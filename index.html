@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chaninha's Glam — Soins capillaires</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ivory:#FBF1E1;
+    --ivory-soft:#F4E6D0;
+    --espresso:#2B1712;
+    --espresso-soft:#4A2A20;
+    --burgundy:#6B1E3C;
+    --burgundy-deep:#4A1329;
+    --gold:#C9A24D;
+    --gold-light:#E4C583;
+    --blush:#EFC9C0;
+    --font-display:'Playfair Display', serif;
+    --font-body:'Poppins', sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--font-body);
+    background:var(--ivory);
+    color:var(--espresso);
+    overflow-x:hidden;
+  }
+  a{text-decoration:none;color:inherit;}
+  img,svg{display:block;max-width:100%;}
+  .container{max-width:1180px;margin:0 auto;padding:0 32px;}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    background:rgba(251,241,225,0.9);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(43,23,18,0.08);
+  }
+  nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 32px;max-width:1180px;margin:0 auto;
+  }
+  .logo{
+    font-family:var(--font-display);
+    font-weight:700;font-size:1.4rem;
+    letter-spacing:0.02em;
+    color:var(--burgundy);
+  }
+  .logo em{font-style:italic;color:var(--gold);}
+  .nav-links{display:flex;gap:36px;list-style:none;}
+  .nav-links a{
+    font-size:0.88rem;font-weight:500;letter-spacing:0.04em;
+    text-transform:uppercase;color:var(--espresso-soft);
+    position:relative;padding-bottom:4px;
+    transition:color 0.25s ease;
+  }
+  .nav-links a::after{
+    content:'';position:absolute;bottom:0;left:0;width:0;height:1px;
+    background:var(--gold);transition:width 0.3s ease;
+  }
+  .nav-links a:hover{color:var(--burgundy);}
+  .nav-links a:hover::after{width:100%;}
+  .nav-cta{
+    background:var(--burgundy);color:var(--ivory);
+    padding:11px 24px;border-radius:100px;
+    font-size:0.82rem;font-weight:600;letter-spacing:0.03em;
+    text-transform:uppercase;
+    transition:background 0.25s ease, transform 0.25s ease;
+  }
+  .nav-cta:hover{background:var(--burgundy-deep);transform:translateY(-1px);}
+  .burger{display:none;font-size:1.6rem;background:none;border:none;color:var(--burgundy);cursor:pointer;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:170px 32px 100px;
+    position:relative;
+    display:grid;grid-template-columns:1.05fr 0.95fr;gap:40px;
+    align-items:center;
+    max-width:1180px;margin:0 auto;
+  }
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:10px;
+    font-size:0.78rem;letter-spacing:0.16em;text-transform:uppercase;
+    color:var(--burgundy);font-weight:600;margin-bottom:22px;
+  }
+  .eyebrow::before{content:'';width:26px;height:1px;background:var(--gold);}
+  h1{
+    font-family:var(--font-display);
+    font-weight:900;
+    font-size:clamp(2.6rem, 5.5vw, 4.4rem);
+    line-height:1.03;
+    color:var(--espresso);
+    margin-bottom:22px;
+  }
+  h1 .accent{
+    font-style:italic;font-weight:600;color:var(--burgundy);
+    position:relative;display:inline-block;
+  }
+  .flourish{
+    display:block;width:210px;max-width:60%;margin-top:6px;
+  }
+  .hero p.lead{
+    font-size:1.08rem;line-height:1.7;color:var(--espresso-soft);
+    max-width:440px;margin-bottom:34px;font-weight:300;
+  }
+  .hero-actions{display:flex;gap:16px;flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--burgundy);color:var(--ivory);
+    padding:16px 32px;border-radius:100px;
+    font-weight:600;font-size:0.92rem;letter-spacing:0.02em;
+    display:inline-flex;align-items:center;gap:8px;
+    transition:background 0.25s ease, transform 0.25s ease;
+  }
+  .btn-primary:hover{background:var(--burgundy-deep);transform:translateY(-2px);}
+  .btn-secondary{
+    border:1.5px solid var(--espresso);color:var(--espresso);
+    padding:15px 30px;border-radius:100px;
+    font-weight:600;font-size:0.92rem;
+    transition:all 0.25s ease;
+  }
+  .btn-secondary:hover{background:var(--espresso);color:var(--ivory);}
+
+  .hero-visual{position:relative;height:460px;}
+  .bottle-cluster{position:relative;width:100%;height:100%;}
+  .bottle-cluster svg{position:absolute;filter:drop-shadow(0 20px 30px rgba(43,23,18,0.18));}
+  .float{animation:floaty 6s ease-in-out infinite;}
+  .float2{animation:floaty 7s ease-in-out infinite 0.6s;}
+  .float3{animation:floaty 6.5s ease-in-out infinite 1.2s;}
+  @keyframes floaty{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-14px);}
+  }
+  .glow-blob{
+    position:absolute;border-radius:50%;
+    background:radial-gradient(circle, var(--blush) 0%, transparent 70%);
+    opacity:0.6;filter:blur(10px);
+  }
+
+  /* ---------- MARQUEE STRIP ---------- */
+  .strip{
+    background:var(--espresso);color:var(--ivory-soft);
+    padding:16px 0;overflow:hidden;white-space:nowrap;
+  }
+  .strip-track{display:inline-flex;gap:60px;animation:scroll 26s linear infinite;}
+  .strip span{
+    font-family:var(--font-display);font-style:italic;font-size:1rem;
+    letter-spacing:0.02em;color:var(--gold-light);
+  }
+  @keyframes scroll{
+    0%{transform:translateX(0);}
+    100%{transform:translateX(-50%);}
+  }
+
+  /* ---------- SECTION HEADINGS ---------- */
+  .section{padding:110px 32px;}
+  .section-head{max-width:640px;margin:0 auto 64px;text-align:center;}
+  .section-head .eyebrow{justify-content:center;}
+  .section-head .eyebrow::before{display:none;}
+  .section-head h2{
+    font-family:var(--font-display);font-weight:700;
+    font-size:clamp(2rem,3.6vw,2.8rem);line-height:1.15;
+    margin-bottom:16px;
+  }
+  .section-head p{color:var(--espresso-soft);font-weight:300;font-size:1.02rem;line-height:1.7;}
+
+  /* ---------- PRODUCTS ---------- */
+  .products{background:var(--ivory);}
+  .product-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:32px;
+    max-width:1180px;margin:0 auto;
+  }
+  .product-card{
+    background:#fff;border-radius:24px;padding:40px 30px 34px;
+    text-align:center;border:1px solid rgba(43,23,18,0.06);
+    transition:transform 0.35s ease, box-shadow 0.35s ease;
+    position:relative;overflow:hidden;
+  }
+  .product-card:hover{transform:translateY(-8px);box-shadow:0 30px 50px rgba(43,23,18,0.12);}
+  .product-card .tag{
+    position:absolute;top:22px;right:22px;
+    font-size:0.68rem;letter-spacing:0.08em;text-transform:uppercase;
+    background:var(--blush);color:var(--burgundy-deep);
+    padding:5px 12px;border-radius:100px;font-weight:600;
+  }
+  .product-card svg{width:120px;height:160px;margin:0 auto 22px;}
+  .product-card h3{
+    font-family:var(--font-display);font-size:1.4rem;font-weight:700;
+    margin-bottom:10px;
+  }
+  .product-card p{
+    color:var(--espresso-soft);font-size:0.92rem;line-height:1.65;
+    font-weight:300;margin-bottom:20px;min-height:80px;
+  }
+  .price-row{
+    display:flex;align-items:center;justify-content:center;gap:14px;
+    padding-top:18px;border-top:1px solid rgba(43,23,18,0.08);
+  }
+  .price{font-family:var(--font-display);font-weight:700;font-size:1.25rem;color:var(--burgundy);}
+  .mini-btn{
+    font-size:0.78rem;font-weight:600;text-transform:uppercase;letter-spacing:0.03em;
+    color:var(--espresso);border-bottom:1.5px solid var(--gold);padding-bottom:2px;
+    transition:color 0.2s ease;
+  }
+  .mini-btn:hover{color:var(--burgundy);}
+
+  /* ---------- WHY / BENEFITS (dark section) ---------- */
+  .why{background:var(--espresso);color:var(--ivory-soft);}
+  .why .section-head p{color:rgba(251,241,225,0.68);}
+  .why .eyebrow{color:var(--gold-light);}
+  .benefit-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:28px;
+    max-width:1180px;margin:0 auto;
+  }
+  .benefit{
+    padding:34px 22px;border-radius:18px;
+    background:rgba(251,241,225,0.04);
+    border:1px solid rgba(251,241,225,0.09);
+    transition:background 0.3s ease, transform 0.3s ease;
+  }
+  .benefit:hover{background:rgba(251,241,225,0.08);transform:translateY(-4px);}
+  .benefit .icon{
+    width:44px;height:44px;margin-bottom:18px;
+    color:var(--gold-light);
+  }
+  .benefit h4{
+    font-family:var(--font-display);font-size:1.1rem;font-weight:700;
+    margin-bottom:8px;color:var(--ivory);
+  }
+  .benefit p{font-size:0.86rem;line-height:1.6;color:rgba(251,241,225,0.62);font-weight:300;}
+
+  /* ---------- RITUAL / STORY ---------- */
+  .story{
+    background:var(--ivory-soft);
+    display:grid;grid-template-columns:0.9fr 1.1fr;gap:60px;
+    align-items:center;padding:110px 32px;
+  }
+  .story-visual{
+    position:relative;border-radius:28px;overflow:hidden;
+    background:linear-gradient(155deg, var(--burgundy) 0%, var(--burgundy-deep) 100%);
+    aspect-ratio:4/5;display:flex;align-items:center;justify-content:center;
+  }
+  .story-visual svg{width:60%;}
+  .story-text .eyebrow::before{display:none;}
+  .story-text h2{
+    font-family:var(--font-display);font-weight:700;
+    font-size:clamp(1.8rem,3vw,2.5rem);margin-bottom:20px;line-height:1.2;
+  }
+  .story-text p{color:var(--espresso-soft);font-weight:300;line-height:1.8;margin-bottom:16px;}
+  .story-text .quote{
+    font-family:var(--font-display);font-style:italic;font-size:1.2rem;
+    color:var(--burgundy);margin-top:26px;padding-left:20px;
+    border-left:3px solid var(--gold);
+  }
+
+  /* ---------- CTA / CONTACT ---------- */
+  .cta{
+    background:var(--burgundy);color:var(--ivory);
+    text-align:center;padding:110px 32px;position:relative;overflow:hidden;
+  }
+  .cta::before{
+    content:'';position:absolute;inset:0;
+    background:radial-gradient(circle at 20% 20%, rgba(201,162,77,0.18), transparent 55%),
+               radial-gradient(circle at 80% 80%, rgba(239,201,192,0.14), transparent 55%);
+  }
+  .cta-inner{position:relative;max-width:600px;margin:0 auto;}
+  .cta h2{
+    font-family:var(--font-display);font-weight:700;
+    font-size:clamp(2rem,4vw,2.9rem);margin-bottom:18px;line-height:1.15;
+  }
+  .cta p{font-weight:300;opacity:0.85;margin-bottom:36px;font-size:1.02rem;}
+  .cta .btn-primary{background:var(--gold);color:var(--espresso);}
+  .cta .btn-primary:hover{background:var(--gold-light);}
+  .cta .btn-secondary{border-color:var(--ivory);color:var(--ivory);}
+  .cta .btn-secondary:hover{background:var(--ivory);color:var(--burgundy);}
+  .cta-actions{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+  .note{margin-top:22px;font-size:0.8rem;opacity:0.6;}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--espresso);color:rgba(251,241,225,0.6);padding:50px 32px 30px;}
+  .footer-inner{
+    max-width:1180px;margin:0 auto;
+    display:flex;justify-content:space-between;align-items:center;
+    flex-wrap:wrap;gap:20px;padding-bottom:26px;
+    border-bottom:1px solid rgba(251,241,225,0.1);
+  }
+  .footer-logo{font-family:var(--font-display);font-weight:700;font-size:1.2rem;color:var(--ivory);}
+  .footer-logo em{color:var(--gold-light);font-style:italic;}
+  .footer-links{display:flex;gap:26px;list-style:none;flex-wrap:wrap;}
+  .footer-links a{font-size:0.85rem;transition:color 0.2s ease;}
+  .footer-links a:hover{color:var(--gold-light);}
+  .footer-bottom{
+    max-width:1180px;margin:22px auto 0;
+    display:flex;justify-content:space-between;font-size:0.78rem;
+    flex-wrap:wrap;gap:10px;opacity:0.6;
+  }
+
+  /* ---------- REVEAL ---------- */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease, transform 0.7s ease;}
+  .reveal.visible{opacity:1;transform:translateY(0);}
+
+  @media (prefers-reduced-motion:reduce){
+    .float,.float2,.float3,.strip-track{animation:none;}
+    .reveal{opacity:1;transform:none;transition:none;}
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:900px){
+    .nav-links,.nav-cta{display:none;}
+    .burger{display:block;}
+    .hero{grid-template-columns:1fr;padding-top:140px;}
+    .hero-visual{height:320px;order:-1;}
+    .product-grid{grid-template-columns:1fr;}
+    .benefit-grid{grid-template-columns:1fr 1fr;}
+    .story{grid-template-columns:1fr;padding:80px 24px;}
+    .section{padding:80px 24px;}
+  }
+  @media (max-width:520px){
+    .benefit-grid{grid-template-columns:1fr;}
+    .container,nav{padding:0 20px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="#top" class="logo">Chaninha's <em>Glam</em></a>
+    <ul class="nav-links">
+      <li><a href="#produits">Produits</a></li>
+      <li><a href="#pourquoi">Pourquoi nous</a></li>
+      <li><a href="#rituel">Le rituel</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Commander</a>
+    <button class="burger" aria-label="Menu">&#9776;</button>
+  </nav>
+</header>
+
+<section class="hero" id="top">
+  <div>
+    <div class="eyebrow">Soins capillaires haut de gamme</div>
+    <h1>Une chevelure<br>qui <span class="accent">brille</span>,<br>qui respire, qui règne.</h1>
+    <svg class="flourish" viewBox="0 0 200 30" fill="none">
+      <path d="M2 20C40 2 70 30 100 15C130 0 160 28 198 10" stroke="#C9A24D" stroke-width="2.5" stroke-linecap="round"/>
+    </svg>
+    <p class="lead">Le shampoing, l'après-shampoing et l'huile précieuse Chaninha's Glam, formulés pour nourrir chaque type de boucle en profondeur et révéler l'éclat que ta chevelure mérite.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Commander maintenant &nbsp;→</a>
+      <a href="#produits" class="btn-secondary">Voir la gamme</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="glow-blob" style="width:280px;height:280px;top:10%;left:20%;"></div>
+    <div class="bottle-cluster">
+      <img src="./shampoo.png" alt="Shampoing eclat" class="float" style="position:absolute; left:8%; top:18%; width:600px;" viewBox="0 0 130 240" fill="none">
+        
+      <img src="./conditionner.png" alt="conditionner" class="float2" style="position:absolute; left:38%; top:0%; width:600px;" viewBox="0 0 150 270" fill="none">
+        
+      <img src ="./l'huile.png" alt="L'huile" class="float3" style="position:absolute; left:64%; top:26%; width:600px;" viewBox="0 0 130 230" fill="none">
+        
+    </div>
+  </div>
+</section>
+
+<div class="strip">
+  <div class="strip-track">
+    <span>✦ Formule enrichie à l'huile de ricin</span>
+    <span>✦ Sans sulfates ni parabènes</span>
+    <span>✦ Pensée pour boucles, crépus &amp; ondulés</span>
+    <span>✦ Fabriqué avec soin</span>
+    <span>✦ Formule enrichie à l'huile de ricin</span>
+    <span>✦ Sans sulfates ni parabènes</span>
+    <span>✦ Pensée pour boucles, crépus &amp; ondulés</span>
+    <span>✦ Fabriqué avec soin</span>
+  </div>
+</div>
+
+<section class="section products" id="produits">
+  <div class="section-head reveal">
+    <div class="eyebrow">La gamme</div>
+    <h2>Trois essentiels, un seul rituel</h2>
+    <p>Chaque produit est pensé pour travailler avec les deux autres nettoyer, réparer, sceller la brillance.</p>
+  </div>
+  <div class="product-grid">
+    <div class="product-card reveal">
+      <span class="tag">Étape 1</span>
+      <img src="./shampoo.png" alt="Shampoing Eclat" style="width:700px; object-fit:contain; margin:0 auto 22px; display:block;"viewBox="0 0 100 140" fill="none">
+        
+      <h3>Shampoing Éclat</h3>
+      <p>Nettoie en douceur, élimine les résidus sans agresser le cuir chevelu et prépare les cheveux à absorber l'hydratation.</p>
+      <div class="price-row">
+        <span class="price">1 200 HTG</span>
+        <a href="#contact" class="mini-btn">Commander</a>
+      </div>
+    </div>
+    <div class="product-card reveal">
+      <span class="tag">Étape 2</span>
+      <img src="./conditionner.png" alt="Shampoing Eclat" style="width:700px; object-fit:contain; margin:0 auto 22px; display:block;" viewBox="0 0 100 140" fill="none">
+        
+      <h3>Après-Shampoing Soie</h3>
+      <p>Démêle, adoucit et referme les cuticules pour une chevelure souple, sans frisottis, jour après jour.</p>
+      <div class="price-row">
+        <span class="price">1 300 HTG</span>
+        <a href="#contact" class="mini-btn">Commander</a>
+      </div>
+    </div>
+    <div class="product-card reveal">
+      <span class="tag">Étape 3</span>
+      <img src="./l'huile.png" alt="Shampoing Eclat" style="width:700px; object-fit:contain; margin:0 auto 22px; display:block;"viewBox="0 0 100 140" fill="none">
+  
+      <h3>Huile Précieuse</h3>
+      <p>Un mélange d'huiles nourrissantes qui scelle l'hydratation, apporte de la brillance et fortifie les pointes.</p>
+      <div class="price-row">
+        <span class="price">1 500 HTG</span>
+        <a href="#contact" class="mini-btn">Commander</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section why" id="pourquoi">
+  <div class="section-head reveal">
+    <div class="eyebrow">Pourquoi Chaninha's Glam</div>
+    <h2>Le glam commence par des soins qui tiennent leurs promesses</h2>
+    <p>Une gamme pensée pour les vraies textures bouclées, crépues, ondulées et les vrais emplois du temps.</p>
+  </div>
+  <div class="benefit-grid">
+    <div class="benefit reveal">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2c3 4 6 8 6 12a6 6 0 1 1-12 0c0-4 3-8 6-12Z"/></svg>
+      <h4>Hydratation profonde</h4>
+      <p>Des actifs qui pénètrent la fibre capillaire au lieu de rester en surface.</p>
+    </div>
+    <div class="benefit reveal">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+      <h4>Résultats visibles vite</h4>
+      <p>Brillance et souplesse dès les premières utilisations.</p>
+    </div>
+    <div class="benefit reveal">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3 4 7v6c0 5 3.5 7.5 8 8 4.5-.5 8-3 8-8V7l-8-4Z"/></svg>
+      <h4>Formule douce</h4>
+      <p>Sans sulfates agressifs ni parabènes, respectueuse du cuir chevelu.</p>
+    </div>
+    <div class="benefit reveal">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h16M4 6h16M4 18h10"/></svg>
+      <h4>Pensé en rituel</h4>
+      <p>Trois étapes complémentaires, un résultat cohérent du lavage à la brillance finale.</p>
+    </div>
+  </div>
+</section>
+
+<section class="story" id="rituel">
+  <div class="story-visual reveal">
+    <img src="douche.jpeg" alt="dame sous la docuhe" vieuBox="0 0 200 240" fill="none">
+     
+  </div>
+  <div class="story-text reveal">
+    <div class="eyebrow">Notre histoire</div>
+    <h2>Née d'une passion pour les cheveux texturés</h2>
+    <p>Chaninha's Glam est parti d'un constat simple : trop de produits promettent la brillance et l'hydratation sans jamais vraiment les tenir sur cheveux bouclés ou crépus.</p>
+    <p>Chaque formule de la gamme est pensée, testée et ajustée pour répondre aux vrais besoins de ces textures sans compromis sur la douceur ni sur les résultats.</p>
+    <p class="quote">« Une chevelure bien soignée, c'est une couronne qu'on porte tous les jours. »</p>
+  </div>
+</section>
+
+<section class="cta" id="contact">
+  <div class="cta-inner reveal">
+    <h2>Prête à révéler ton glam ?</h2>
+    <p>Commande ta gamme Chaninha's Glam dès aujourd'hui livraison disponible, paiement simple.</p>
+    <div class="cta-actions">
+      <a href="https://wa.me/50935731379" target="_blank" class="btn-primary">Commander sur WhatsApp</a>
+      <a href="mailto:pierreemma65@gmail.com" class="btn-secondary">Écrire un e-mail</a>
+    </div>
+  
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Chaninha's <em>Glam</em></div>
+    <ul class="footer-links">
+      <li><a href="#produits">Produits</a></li>
+      <li><a href="#pourquoi">Pourquoi nous</a></li>
+      <li><a href="#rituel">Le rituel</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Chaninha's Glam. Tous droits réservés.</span>
+    <span>Fait avec soin pour les chevelures texturées.</span>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
